@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/main.css">
     <title>Rock, Paper, Scissors</title>
 </head>
 <body>
-    
+    <div class="cards">
+        <button id="Paper">
+            <img class="card" src="https://www.pkmncollectors.com/images/cards/pokemon-charmander-stormfront-101-card.jpg" alt="charmander pokemon card">
+        </button>
+        <button id="Scissors">
+            <img class="card" src="https://pokemonprice.com/Content/images/cards/dark-explorers/bulbasaur-dark-explorers-dex-1.jpg" alt="bulbasaur pokemon card">
+        </button>
+        <button id="Rock">
+            <img class="card" src="https://images.pokemontcg.io/base6/95_hires.png" alt="squirtle pokemon card">
+        </button>
+    </div>
+    <div>
+        <h2 id="round"></h2>
+        <h1 id="winner"></h1>
+    </div>
 </body>
 <script src="/app.js"></script>
 </html>
