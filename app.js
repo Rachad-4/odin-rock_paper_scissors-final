@@ -21,16 +21,14 @@ rockBtn.addEventListener(`click`, () => {
 
 paperBtn.addEventListener(`click`, () => {
     roundRes.innerHTML = playRound(`Paper`, getComputerChoice());
-    rounds.textContent = `Round ${++roundNum} Results!`;
-    oScore.textContent = `${cpuScore}`;
-    pScore.textContent = `${playerScore}`;
+    displayScore();
+    checkScore();
 }); //bulbasaur
 
 scissorsBtn.addEventListener(`click`, () => {
     roundRes.innerHTML = playRound(`Scissors`, getComputerChoice());
-    rounds.textContent = `Round ${++roundNum} Results!`;
-    oScore.textContent = `${cpuScore}`;
-    pScore.textContent = `${playerScore}`;
+    displayScore();
+    checkScore();
 }); //charmander
 
 function getComputerChoice () {
