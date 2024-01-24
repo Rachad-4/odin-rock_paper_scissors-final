@@ -3,10 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="./style/main.css">
+
+    <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chango&display=swap" rel="stylesheet"> 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">    
+    
     <title>Rock, Paper, Scissors</title>
 </head>
 <body>
+    <h1 id="title">Choose Your <span id="poke">Pokemon</span>!</h2>
     <div class="cards">
         <button id="Paper">
             <img class="card" src="https://www.pkmncollectors.com/images/cards/pokemon-charmander-stormfront-101-card.jpg" alt="charmander pokemon card">
@@ -19,8 +32,17 @@
         </button>
     </div>
     <div>
-        <h2 id="round"></h2>
-        <h1 id="winner"></h1>
+
+    </div>
+    <div>
+        <div class="scoreboard">
+            <p id="roundCount">Best of 5!!!</p>
+            <p id="round"></p>
+            <div class="points">
+                <p>Player: <span id="pscore">0</span></p>
+                <p>Opponent: <span id="oscore">0</span></p>
+            </div>
+        </div>
     </div>
 </body>
 <script src="/app.js"></script>

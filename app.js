@@ -3,23 +3,35 @@ let playerSelection = "";
 let computerSelection = "";
 let playerScore = 0;
 let cpuScore = 0;
+let roundNum = 0;
 
 const rockBtn = document.querySelector("#Rock");
 const paperBtn = document.querySelector("#Paper");
 const scissorsBtn = document.querySelector("#Scissors");
-const roundSec = document.querySelector("#round");
+const roundRes = document.querySelector("#round");
+const rounds = document.querySelector("#roundCount");
+const pScore = document.querySelector("#pscore");  
+const oScore = document.querySelector("#oscore"); 
 
 rockBtn.addEventListener(`click`, () => {
-    roundSec.textContent = playRound(`Rock`, getComputerChoice());
-});
+    roundRes.innerHTML = playRound(`Rock`, getComputerChoice());
+    displayScore();
+    checkScore();
+}); //squirtle
 
 paperBtn.addEventListener(`click`, () => {
-    roundSec.textContent = playRound(`Paper`, getComputerChoice());
-});
+    roundRes.innerHTML = playRound(`Paper`, getComputerChoice());
+    rounds.textContent = `Round ${++roundNum} Results!`;
+    oScore.textContent = `${cpuScore}`;
+    pScore.textContent = `${playerScore}`;
+}); //bulbasaur
 
 scissorsBtn.addEventListener(`click`, () => {
-    roundSec.textContent = playRound(`Scissors`, getComputerChoice());
-});
+    roundRes.innerHTML = playRound(`Scissors`, getComputerChoice());
+    rounds.textContent = `Round ${++roundNum} Results!`;
+    oScore.textContent = `${cpuScore}`;
+    pScore.textContent = `${playerScore}`;
+}); //charmander
 
 function getComputerChoice () {
     return choices[Math.floor(Math.random() * 3)]; 
@@ -29,35 +41,59 @@ function playRound (playerSelection, computerSelection) {
 
     if (playerSelection == "Rock") {
         if (computerSelection == "Scissors") {
-            return `${playerSelection} crushes ${computerSelection}.... Player: ${++playerScore}    Computer: 0`;
+            ++playerScore;
+            return `<span id="squirtle">Squirtle's</span> bubbles extinguised <span id="charmander">Charmander</span>!`;
         } else if (computerSelection == "Paper") {
-            return `You Lose! ${computerSelection} covers ${playerSelection}`
-        } else return "It is tie!"
+            ++cpuScore;
+            return `<span id="squirtle">Squirtle</span> was tackled by <span id="bulbasuar">Bulbasaur</span>!`
+        } else return `It is a tie! <span id="squirtle">Squirtles</span> will not attack each other.`
     } else if (playerSelection == "Scissors") {
         if (computerSelection == "Paper") {
-            return `You Won! ${playerSelection} beats ${computerSelection}`
+            ++playerScore;
+            return `<span id="charmander">Charmander</span> scorches <span id="bulbasuar">Bulbasuar</span>!`
         } else if (computerSelection == "Rock") {
-            return `You Lose! ${computerSelection} beats ${playerSelection}`
-        } else return "It is tie!"
+            ++cpuScore;
+            return `<span id="charmander">Charmander's</span> fire was put out by <span id="squirtle">Squirtle</span>!`
+        } else return `It is a tie! <span id="charmander">Charmanders</span> will not attack each other.`
     } else if (playerSelection == "Paper") {
         if (computerSelection == "Rock") {
-            return `You Won! ${playerSelection} beats ${computerSelection}`
+            ++playerScore;
+            return `<span id="bulbasuar">Bulbasuar</span> slices <span id="squirtle">Squirtle</span> with razor leaf!`
         } else if (computerSelection == "Scissors") {
-            return `You Lose! ${computerSelection} beats ${playerSelection}`
-        } else return "It is tie!"    
+            ++cpuScore;
+            return `<span id="bulbasuar">Bulbasuar</span> was roasted by <span id="charmander">Charmander</span>!`
+        } else return `It is a tie! <span id="bulbasuar">Bulbasuars</span> will not attack each other.`   
     }
 }
 
-function game() {
-    console.log(`Round ${i}! Fight!!!`);
-    playerSelection = prompt("Paper, Scissors, or Rock")
-    console.log(playRound(playerSelection, computerSelection));
-}
+function checkScore () {
+    const winner = playerScore > cpuScore? "Player" : "Opponent";
+    const winningRounds = Math.max(playerScore, cpuScore);
 
-function checkScore (playerScore, computerScore) {
     if (playerScore == 3) {
-        return `Game over! You win!!`;
-    } else if (computerScore == 3) {
-        return `Game over! You lose!!`;
+        alert(`Game over! Player wins!! The score is ${playerScore} to ${cpuScore}`);
+        resetGame();
+    } else if (cpuScore == 3) {
+        alert(`Game over! Player wins!! The score is ${playerScore} to ${cpuScore}`);
+        resetGame();
+    } else if (roundNum == 5 && playerScore != cpuScore) {
+        alert(`The winner is ${winner} with ${winningRounds} rounds!`);
+        resetGame();
+    } else if (roundNum == 5 && playerScore == cpuScore) {
+        alert(`Draw!`);
+        resetGame();
     }
+}
+
+function displayScore() {
+    rounds.textContent = `Round ${++roundNum} Results!`;
+    oScore.textContent = `${cpuScore}`;
+    pScore.textContent = `${playerScore}`;
+}
+
+function resetGame() {
+    playerScore = 0;
+    cpuScore = 0;
+    roundNum = 0;
+    rounds.textContent = "Best of 5!!!";
 }
